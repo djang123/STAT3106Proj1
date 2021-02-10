@@ -1,0 +1,31 @@
+---
+title: "Proj1"
+output: html_document
+---
+
+```{r}
+library(jsonlite)
+library(tidyverse)
+library(plyr)
+library(httr)
+library(ggplot2)
+library(RSocrata)
+url<-"https://data.cityofnewyork.us/resource/k397-673e.json"
+
+response <- GET(url=url)
+response1<-content(response)
+
+```
+
+```{r}
+df <- read.socrata(
+  "https://data.cityofnewyork.us/resource/k397-673e.json?fiscal_year=2020"
+)
+EM<-levels(as.factor(df$agency_name))[121]
+dfe<-df[df$agency_name==EM,]
+
+colnames(dfe)
+
+plot(density(as.numeric(dfe$base_salary)),main="Distribution of Base Salary in NYC Emergency Management")
+```
+
