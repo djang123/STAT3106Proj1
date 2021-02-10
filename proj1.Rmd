@@ -19,7 +19,7 @@ response1<-content(response)
 
 ```{r}
 df <- read.socrata(
-  "https://data.cityofnewyork.us/resource/k397-673e.json?fiscal_year=2020"
+  "https://data.cityofnewyork.us/resource/k397-673e.json?fiscal_year=2019"
 )
 EM<-levels(as.factor(df$agency_name))[121]
 dfe<-df[df$agency_name==EM,]
